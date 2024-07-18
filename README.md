@@ -9,29 +9,42 @@ version of the code, I didn't know concepts of methods and OOP in Java, making t
 ---
 
 ## Installation
-Any compiler or IDEA to run the DayOfTheWeekTest is fine. 
+Any compiler or IDEA to run the application.DayOfTheWeekTest is fine. 
 Download the DayOfTheWeekFinder or the Java class inside it to use on your compiler/IDE of choice.
 
 ---
 
 ## Usage
-Run the DayOfTheWeekTest. Next, type in a date on the format [ddmmyyyy].
+Run the application DayOfTheWeek. Next, type in a date on the format [ddmmyyyy].
 
 - You will receive the day of the week after.
+- If the input is not on the specified format or the user types in exactly 8 letters, an error message will appear.
+- The program will continue until the user enters a date on the specified format.
 
 ---
 
 ## Known Issues
 
-- So far, there are no input treatment of what the user types in. Adding try-catch and input treatment is vital on a future version of this code;
-- The code assumes the user will always type a String on the format [ddmmyyyy]. Need to check beforehand if the user typed in the correct format for this code to work.
 - Code is only valid for dates starting in the year 1900!
+- No JUnit test classes were created for this project yet.
+
 
 ---
 ## Changes and Updates
 Developments of this project:
 
-- **Version 1.0.0 (Initial Release)**
+**Version 2.0.0**  
+
+
+- Renamed DayOfTheWeekTest to DayOfTheWeek to avoid confusion with a potential, future JUnit application.
+- Created packages models and application, and moved DayOfTheWeek.java to application.
+- Created the class UserInterface to handle the user input, only letting the program continue if the date on specified format is entered.
+- Methods calculateEffectiveDays and findingTheExactDayOfTheWeek were written to make the code clear.
+
+
+**Version 1.0.0 (Initial Release)**
+
+
 - Added core functionality.
 - Fixed minor bugs.
 - No treatment of what the user types.

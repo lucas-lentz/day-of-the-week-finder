@@ -1,15 +1,64 @@
+package application;
+
+import models.UserInterface;
+
 import java.util.Scanner;
 
-public class DayOfTheWeekTest {
+public class DayOfTheWeek {
     public static void main(String[] args) {
 
         // 1.0 version of the code.
-        // Doesn't have any method or OOP.
-        // Code was not cleaned for now.
+        // Class was renamed
+        // Packages application and models were created
+        // Object UserInterface handles the user input
+        // Methods and object were created to make the code clear
 
         Scanner read = new Scanner(System.in);
-        System.out.println("Type in the day, month and year in the format [DDMMYYYY] :");
-        String data = read.nextLine();
+        // Creates the object and validates the user-inputted data
+        // Will keep asking for dates until the user types the format DDMMYYYY.
+        UserInterface myInterface = new UserInterface(read);
+        String data = myInterface.receiveAndValidateDate();
+
+        // With a valid date, check the number of effective days between
+        // 01/01/1900 and the input date data.
+
+        int effectiveDays = calculateEffectiveDays(data);
+
+        // Checking which day of the week it is:
+        findingTheExactDayOfTheWeek(effectiveDays);
+        read.close();
+    }
+
+
+    private static void findingTheExactDayOfTheWeek(int effectiveDays) {
+        int remainder = (effectiveDays % 7);
+
+        switch (remainder) {
+            case 0:
+                System.out.println("Monday");
+                break;
+            case 1:
+                System.out.println("Tuesday");
+                break;
+            case 2:
+                System.out.println("Wednesday");
+                break;
+            case 3:
+                System.out.println("Thursday");
+                break;
+            case 4:
+                System.out.println("Friday");
+                break;
+            case 5:
+                System.out.println("Saturday");
+                break;
+            case 6:
+                System.out.println("Sunday");
+                break;
+        }
+    }
+
+    public static int calculateEffectiveDays(String data) {
 
         String dia = "";
         String mes = "";
@@ -28,12 +77,13 @@ public class DayOfTheWeekTest {
         }
 
         // Passing from String to int
+        // Now we have the exact day, month and year the user typed
 
         int day = Integer.parseInt(dia);
         int month = Integer.parseInt(mes);
         int year = Integer.parseInt(ano);
 
-        int diaEfetivo = 0; // Lops from day 1 in 01-01-1900 until the read "date" day
+        int diaEfetivo = 0; // Lops from day 1 in 01-01-1900, a Monday, until the read "data" day
 
         // Checking how many effective days there are in the year
 
@@ -47,6 +97,7 @@ public class DayOfTheWeekTest {
         }
 
         // Effective days on the month:
+        // First month = primeiroMes = January. Starts with 1.
 
         for (int primeiroMes = 1; primeiroMes < month; primeiroMes++) {
             switch (primeiroMes) {
@@ -92,39 +143,10 @@ public class DayOfTheWeekTest {
                     break;
             }
 
-            read.close();
-        }
 
+        }
         diaEfetivo += (day - 1);
-
-        // Checking which day of the week it is:
-
-        int resto = (diaEfetivo % 7);
-
-        switch (resto) {
-            case 0:
-                System.out.println("Monday");
-                break;
-            case 1:
-                System.out.println("Tuesday");
-                break;
-            case 2:
-                System.out.println("Wednesday");
-                break;
-            case 3:
-                System.out.println("Thursday");
-                break;
-            case 4:
-                System.out.println("Friday");
-                break;
-            case 5:
-                System.out.println("Saturday");
-                break;
-            case 6:
-                System.out.println("Sunday");
-                break;
-        }
-
+        return diaEfetivo;
     }
 
 }
